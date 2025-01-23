@@ -1,0 +1,50 @@
+@startuml
+left to right direction
+
+actor Usuario as usuario
+actor Organizador as organizador
+actor Palestrante as palestrante
+actor Participante as participante
+
+usuario -- participante
+usuario -- palestrante
+usuario -- organizador
+
+rectangle Sistema {
+	usecase "**RF1** Gerenciar acesso" as CRUD
+	usecase "**RF2** Gerenciar evento" as CriaEvento
+	usecase "**RF3** Gerenciar atividade" as CriaAtividade
+	usecase "**RF4** Adicionar palestrante auxiliar" as AdicionarPalestrante
+	usecase "**RF5** Gerenciar inscrições" as InscreverAtividade
+	usecase "**RF6** Obter informações inscrições" as InformacoesAtividade
+	usecase "**RF7** Gerar comprovante de Presença" as GerarComprovante
+	usecase "**RF8** Baixar comprovante de Presença" as BaixarComprovante
+
+}
+
+package "AuthRemoteService <&cloudy>" as remoteAuth {
+
+	file qrcode [
+		QRcode
+		<size:42><&clipboard></size>
+    ]
+
+	file phone [
+		Cliente
+		<Smartphone>
+		<size:42><&phone></size>
+    ]
+
+}
+
+usuario -- CRUD
+palestrante -- CriaAtividade
+organizador -- CriaEvento
+participante -- InscreverAtividade
+organizador -- GerarComprovante
+participante -- BaixarComprovante
+participante -- InformacoesAtividade
+palestrante -- AdicionarPalestrante
+GerarComprovante -- remoteAuth
+
+@enduml

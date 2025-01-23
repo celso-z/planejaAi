@@ -1,0 +1,91 @@
+@startuml
+abstract class Usuario {
+	String nome
+	String email
+	Tipo tipoUsuario
+	void alterarAcesso()
+	void encontrarEvento(Evento e)
+	void encontrarEvento(Integer ID)
+
+}
+
+class Organizador extends Usuario {
+	void gerarAutenticacaoPresenca(Inscricao inscricao)
+	void inserirAcesso()
+	void deletarAcesso()
+	void lerAcesso()
+}
+
+class Palestrante extends Usuario {
+	void adicionarConvidado(Palestrante convidado)
+}
+
+class Participante extends Usuario {
+	void listInscricoes()
+	Json gerarComprovante()
+
+}
+
+class Evento{
+	Date data
+	String local
+	Integer maxAtiviadeSimultaneas
+
+	void inserirEvento()
+	void deletarEvento()
+	void alterarEvento()
+	void lerEvento()
+	void encontrarEvento(Evento e)
+	void encontrarEvento(Integer ID)
+}
+
+class Atividade{
+	Date data
+	String local
+	Integer capacidadeMaxima
+	String nome
+	String descricao
+	Tipo tipoAtividade
+	Integer duracao
+
+	void inserirAtividade()
+	void deletarAtividade()
+	void alterarAtividade()
+	void lerAtividade()
+	void encontrarAtividade(Atividade a)
+	void encontrarAtividade(Integer ID)
+}
+
+class Inscricao{
+	Long Id
+	Boolean isConfirmed
+
+	void inserirInscricao()
+	void deletarInscricao()
+	void alterarInscricao()
+	void lerInscricao()
+	void encontrarInscricao(Inscricao i)
+	void encontrarInscricao(Integer ID)
+	void encontrarInscricoes(Participante participante)
+	Long getId()
+	void setId(Long id)
+	Integer hashCode()
+	Boolean isConfirmed()
+	void setIsConfirmed()
+}
+
+class AuthProxy{
+
+	void iniciarPrazo()
+	void finalizarPrazo()
+	void confirmarPresenca()
+}
+
+Evento "1..1" *-- "1..N" Atividade
+Atividade "1..1" *-- "1..N" Inscricao
+Atividade "1..1" *-- "1..N" Palestrante
+Inscricao "1..N" -- "1..1" Participante
+Organizador "1..N" -- "1..N" Evento
+AuthProxy "1..1" -- "1..1" Inscricao
+
+@enduml
