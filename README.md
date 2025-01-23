@@ -38,7 +38,7 @@ Java JDK 21 e Maven
 ## 🎈 Utilização <a name="usage"></a>
 TODO
 
-## 🚀 Deployment <a name = "deployment"></a>
+## 🚀 Deploy <a name = "deployment"></a>
 TODO
 
 ## ⛏️ Tecnologias <a name = "built_using"></a>
@@ -46,7 +46,7 @@ TODO
 - [Maven](https://maven.apache.org/) - Gerenciador de dependências
 - [Spring](https://spring.io/projects/spring-framework) - Framework Web
 
-## ✍️ Authors <a name = "authors"></a>
+## ✍️ Autores <a name = "authors"></a>
 - [@celso-z](https://github.com/celso-z) - Dev/Tester
 - [@lauriely]() - Dev/PO
 
