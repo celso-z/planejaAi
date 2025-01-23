@@ -48,7 +48,7 @@ TODO
 
 ## ✍️ Autores <a name = "authors"></a>
 - [@celso-z](https://github.com/celso-z) - Dev/Tester
-- [@lauriely]() - Dev/PO
+- [@laurielylourenco](https://github.com/laurielylourenco) - Dev/PO
 
 
 ## 🎉 Menções <a name = "acknowledgement"></a>
