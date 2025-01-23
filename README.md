@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=640px height=363px src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Logo_da_UFJF.png/640px-Logo_da_UFJF.png" alt="Logo instituição"></a>
+ <img width=261px height=148px src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Logo_da_UFJF.png/640px-Logo_da_UFJF.png" alt="Logo instituição"></a>
 </p>
 
 <h3 align="center">AnotaAi</h3>
