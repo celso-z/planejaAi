@@ -1,0 +1,13 @@
+services:
+  postgres:
+    image: "pgvector/pgvector:pg17"
+    volumes: 
+      - postgres_planejaai:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=planejaai_db
+
+volumes:
+  postgres_planejaai:
