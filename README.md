@@ -36,10 +36,16 @@ O projeto pode ser executado com um goal maven simples `mvn clean install` é re
 Java JDK 21 e Maven
 
 ## 🎈 Utilização <a name="usage"></a>
-TODO
+#TODO
 
 ## 🚀 Deploy <a name = "deployment"></a>
-TODO
+### Local: 
+```
+# docker compose up
+$ mvn spring-boot:run
+//ou para rodar também os testes
+$ mvn clean install
+```
 
 ## ⛏️ Tecnologias <a name = "built_using"></a>
 - [Java](https://www.java.com/) - Linguagem
