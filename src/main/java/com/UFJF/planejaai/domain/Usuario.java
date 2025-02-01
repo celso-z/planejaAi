@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.EnumType;
 
@@ -17,10 +18,12 @@ import jakarta.persistence.EnumType;
 @DiscriminatorColumn(name = "TIPO_USUARIO")
 public abstract class Usuario {
 	@Column(nullable = false)
+	@NotBlank
 	private String nome;
 	
 	@Id
 	@Column(nullable = false)
+	@NotBlank
 	private String email;
 	
 	@Column(name = "TIPO_USUARIO", nullable = false, insertable = false, updatable = false)
