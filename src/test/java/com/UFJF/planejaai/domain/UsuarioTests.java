@@ -23,6 +23,7 @@ public class UsuarioTests {
 		Usuario example = new Participante();
 		example.setNome("");
 		example.setEmail("user@system.com");
+		example.setSenha("hardcodedValue");
 		
 		violations = validator.validate(example);
 		Assertions.assertTrue(violations.size() == 1, "Validação de campo nome vazio incorreta!");
@@ -32,6 +33,12 @@ public class UsuarioTests {
 		
 		violations = validator.validate(example);
 		Assertions.assertTrue(violations.size() == 1, "Validação de campo email vazio incorreta!");
+		violations.clear();
+		example.setEmail("user@system.com");
+		example.setSenha("");
+		
+		violations = validator.validate(example);
+		Assertions.assertTrue(violations.size() == 1, "Validação de campo senha vazio incorreta!");
 		
 		
 	}
