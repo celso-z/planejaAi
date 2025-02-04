@@ -13,7 +13,6 @@ import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinColumns;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
 
 @Entity
 @IdClass(InscricaoId.class)
@@ -23,7 +22,7 @@ public class Inscricao {
 	private Long id;
 	
 	@Column(nullable = false, columnDefinition = "boolean default false")
-	private boolean confirmada;
+	private boolean presencaConfirmada;
 	
 	@Id
 	@ManyToOne
@@ -54,15 +53,15 @@ public class Inscricao {
 		this.id = id;
 	}
 
-	public boolean getConfirmada() {
-		return confirmada;
+	public boolean isPresencaConfirmada() {
+		return presencaConfirmada;
 	}
 
-	public void setConfirmada(Boolean confirmada) {
-		if(this.confirmada) {
+	public void setPresencaConfirmada(Boolean presencaConfirmada) {
+		if(this.presencaConfirmada) {
 			return;
 		}
-		this.confirmada = confirmada;
+		this.presencaConfirmada = presencaConfirmada;
 	}
 
 	public void setParticipante(Participante participante) {

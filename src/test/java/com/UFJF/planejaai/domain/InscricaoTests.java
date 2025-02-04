@@ -12,11 +12,11 @@ public class InscricaoTests {
 	void setConfirmadaTest() {
 		Inscricao example = new Inscricao();
 		
-		Assertions.assertFalse(example.getConfirmada(), "Inscrição deve ser automaticamente inicializada para false");
-		example.setConfirmada(true);
-		Assertions.assertTrue(example.getConfirmada(), "Método setter do campo confirmação de inscrição não funciona!");
-		example.setConfirmada(false);
-		Assertions.assertTrue(example.getConfirmada(), "Classe Inscrição não deve permitir desconfirmar inscrições confirmadas.");
+		Assertions.assertFalse(example.isPresencaConfirmada(), "Inscrição deve ser automaticamente inicializada para false");
+		example.setPresencaConfirmada(true);
+		Assertions.assertTrue(example.isPresencaConfirmada(), "Método setter do campo confirmação de inscrição não funciona!");
+		example.setPresencaConfirmada(false);
+		Assertions.assertTrue(example.isPresencaConfirmada(), "Classe Inscrição não deve permitir desconfirmar inscrições confirmadas.");
 	}
 	
 	@Test
@@ -44,7 +44,7 @@ public class InscricaoTests {
 			Assertions.fail("Implemente ou altere função de hashing");
 		}
 		
-		example.setConfirmada(true);
+		example.setPresencaConfirmada(true);
 		example.setId(Long.valueOf(0));
 		example.setParticipante(new Participante());
 		example.setAtividade(new Atividade());
@@ -65,7 +65,7 @@ public class InscricaoTests {
 		}
 		
 		Inscricao example2 = new Inscricao();
-		example2.setConfirmada(false);
+		example2.setPresencaConfirmada(false);
 		example2.setId(Long.valueOf(1));
 		example2.setParticipante(new Participante());
 		example2.setAtividade(new Atividade());
