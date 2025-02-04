@@ -1,6 +1,8 @@
 package com.UFJF.planejaai.domain;
 
 
+import java.util.Objects;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
@@ -21,7 +23,7 @@ import jakarta.persistence.EnumType;
 public abstract class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long id;
+	private Long id;
 	
 	@Column(nullable = false)
 	@NotBlank
@@ -78,4 +80,22 @@ public abstract class Usuario {
 	public Long getId() {
 		return id;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(email, id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		return Objects.equals(email, other.email) && Objects.equals(id, other.id);
+	}
+	
 }
