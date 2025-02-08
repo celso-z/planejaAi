@@ -13,20 +13,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.UFJF.planejaai.domain.CredenciaisUsuario;
-import com.UFJF.planejaai.domain.Organizador;
 import com.UFJF.planejaai.services.JwtService;
-import com.UFJF.planejaai.services.OrganizadorService;
 
 @RestController
 public class LoginController {
 	private final JwtService jwt;
 	private final AuthenticationManager authManager;
-	private final OrganizadorService servicoOrganizador;
 	
-	public LoginController(JwtService jwt, AuthenticationManager authManager, OrganizadorService servicoOrganizador) {
+	public LoginController(JwtService jwt, AuthenticationManager authManager) {
 		this.jwt = jwt;
 		this.authManager = authManager;
-		this.servicoOrganizador = servicoOrganizador;
 	}
 	
 	@PostMapping("/login")
@@ -44,12 +40,6 @@ public class LoginController {
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
 		}
 		
-	}
-	//SOMENTE PARA TESTES DE API DE VALIDAÇÃO
-	@PostMapping("/create")
-	public ResponseEntity<?> criarUsuario(@RequestBody Organizador organizador){
-		servicoOrganizador.criarOrganizadorPorUsuario(organizador);
-		return ResponseEntity.ok().build();
 	}
 	
 }
