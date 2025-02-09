@@ -1,7 +1,11 @@
 package com.UFJF.planejaai.services;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +39,36 @@ public class UsuarioService {
 	        throw new IllegalArgumentException("Usuário não pode ser inserido, quebra restrições do banco");
 	    }
 		
+	}
+	
+	public List<UsuarioDTO> getAllUsuarios() {
+		List<Usuario> usuarios = (List<Usuario>) repositorioUsuario.findAll();
+		return usuarios.stream().map((usuario) -> {
+			UsuarioDTO dto = new UsuarioDTO(usuario);
+			return dto;
+			}
+		).toList();	
+	}
+	
+	public UsuarioDTO getUsuario(String email){
+		Optional<Usuario> usuario = repositorioUsuario.findByEmail(email);
+		return usuario.map(UsuarioDTO::new).orElseThrow(()->new UsernameNotFoundException("E-mail não encontrado!"));
+	}
+	
+	public List<UsuarioDTO> getAllUsuariosPorTipo(TipoUsuario tipo){
+		List<Usuario> usuarios = (List<Usuario>) repositorioUsuario.findAllByTipoUsuario(tipo);
+		return usuarios.stream().map((usuario) -> {
+			UsuarioDTO dto = new UsuarioDTO(usuario);
+			return dto;
+			}
+		).toList();	
+	}
+	
+	public void deleteByEmail(String email) {
+		Optional<Usuario> paraDeletar = repositorioUsuario.findByEmail(email);
+		paraDeletar.ifPresentOrElse(
+				(deletado) -> {repositorioUsuario.delete(deletado);},
+				() -> {throw new UsernameNotFoundException("E-mail não encontrado!");});
 	}
 	
 }
