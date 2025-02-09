@@ -71,4 +71,21 @@ public class UsuarioService {
 				() -> {throw new UsernameNotFoundException("E-mail não encontrado!");});
 	}
 	
+	public void atualizarUsuario(Usuario usuario) throws IllegalArgumentException {
+		if(usuario == null) {
+			throw new IllegalArgumentException("Usuário não pode ser nulo!");
+		}
+		Optional<Usuario> encontrado = repositorioUsuario.findByEmail(usuario.getEmail());
+		encontrado.ifPresentOrElse(
+				(entidade) -> {
+					usuario.setId(entidade.getId());
+					usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
+					try{
+						repositorioUsuario.save(usuario);
+					}catch (DataIntegrityViolationException e) {
+				        throw new IllegalArgumentException("Usuário não pode ser atualizado, quebra restrições do banco");
+				    }
+				},
+				() -> {throw new UsernameNotFoundException("E-mail não encontrado!");});
+	}
 }

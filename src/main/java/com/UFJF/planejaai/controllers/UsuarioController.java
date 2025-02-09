@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,7 @@ import com.UFJF.planejaai.domain.Organizador;
 import com.UFJF.planejaai.domain.Palestrante;
 import com.UFJF.planejaai.domain.Participante;
 import com.UFJF.planejaai.domain.TipoUsuario;
+import com.UFJF.planejaai.domain.Usuario;
 import com.UFJF.planejaai.domain.UsuarioDTO;
 import com.UFJF.planejaai.services.UsuarioService;
 
@@ -29,7 +31,7 @@ public class UsuarioController {
 		try{
 			usuarioService.criarUsuario(organizador);
 		}catch(IllegalArgumentException ex){
-			ResponseEntity.badRequest().build();
+			return ResponseEntity.badRequest().build();
 		}
 		return ResponseEntity.ok().build();
 	}
@@ -38,7 +40,7 @@ public class UsuarioController {
 		try{
 			usuarioService.criarUsuario(palestrante);
 		}catch(IllegalArgumentException ex){
-			ResponseEntity.badRequest().build();
+			return ResponseEntity.badRequest().build();
 		}
 		return ResponseEntity.ok().build();
 	}
@@ -47,7 +49,7 @@ public class UsuarioController {
 		try{
 			usuarioService.criarUsuario(participante);
 		}catch(IllegalArgumentException ex){
-			ResponseEntity.badRequest().build();
+			return ResponseEntity.badRequest().build();
 		}
 		return ResponseEntity.ok().build();
 	}
@@ -91,6 +93,18 @@ public class UsuarioController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+	}
+	
+	@PutMapping("/organizador")
+	public ResponseEntity<?> atualizarUsuario(@RequestBody Organizador organizador){
+		try{
+			usuarioService.atualizarUsuario(organizador);
+		}catch(IllegalArgumentException ex){
+			return ResponseEntity.badRequest().build();
+		}catch(UsernameNotFoundException ex){
+			return ResponseEntity.badRequest().build();
+		}
+		return ResponseEntity.ok().build();
 	}
 	
 }
