@@ -26,17 +26,29 @@ public class UsuarioController {
 	
 	@PostMapping("/organizador")
 	public ResponseEntity<?> criarOrganizador(@RequestBody Organizador organizador){
-		usuarioService.criarUsuario(organizador);
+		try{
+			usuarioService.criarUsuario(organizador);
+		}catch(IllegalArgumentException ex){
+			ResponseEntity.badRequest().build();
+		}
 		return ResponseEntity.ok().build();
 	}
 	@PostMapping("/palestrante")
 	public ResponseEntity<?> criarPalestrante(@RequestBody Palestrante palestrante){
-		usuarioService.criarUsuario(palestrante);
+		try{
+			usuarioService.criarUsuario(palestrante);
+		}catch(IllegalArgumentException ex){
+			ResponseEntity.badRequest().build();
+		}
 		return ResponseEntity.ok().build();
 	}
 	@PostMapping("/participante")
 	public ResponseEntity<?> criarParticipante(@RequestBody Participante participante){
-		usuarioService.criarUsuario(participante);
+		try{
+			usuarioService.criarUsuario(participante);
+		}catch(IllegalArgumentException ex){
+			ResponseEntity.badRequest().build();
+		}
 		return ResponseEntity.ok().build();
 	}
 	@GetMapping("/usuarios")
