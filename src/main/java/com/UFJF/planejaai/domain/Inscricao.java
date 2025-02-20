@@ -24,7 +24,6 @@ public class Inscricao {
 	@Column(nullable = false, columnDefinition = "boolean default false")
 	private boolean presencaConfirmada;
 	
-	@Id
 	@ManyToOne
 	@JoinColumn(name="ID_PARTICIPANTE")
 	private Participante participante;
