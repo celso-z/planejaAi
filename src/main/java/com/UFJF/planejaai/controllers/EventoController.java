@@ -10,32 +10,32 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.UFJF.planejaai.domain.AtividadeDTO;
-import com.UFJF.planejaai.domain.Atividade;
-import com.UFJF.planejaai.services.AtividadeService;
+import com.UFJF.planejaai.domain.Evento;
+import com.UFJF.planejaai.domain.EventoDTO;
+import com.UFJF.planejaai.services.EventoService;
 
-public class AtividadeController {
+public class EventoController {
 	@Autowired
-	private AtividadeService atividadeService;
+	private EventoService eventoService;
 	
-	@PostMapping("/atividade")
-	public ResponseEntity<?> criarAtividade(@RequestBody AtividadeDTO atividade){
+	@PostMapping("/evento")
+	public ResponseEntity<?> criarEvento(@RequestBody EventoDTO evento){
 		try {
-			atividadeService.criarAtividade(atividade);
+			eventoService.criarEvento(evento);
 		} catch (IllegalArgumentException ex) {
 			return ResponseEntity.badRequest().build();
 		}
 		return ResponseEntity.ok().build();
 	}
 	
-	@GetMapping("/atividades")
-	public List<Atividade> getAllAtividades(){
-		return atividadeService.getAllAtividades();
+	@GetMapping("/eventos")
+	public List<Evento> getAllEventos(){
+		return eventoService.findAllEventos();
 	}
 	
-	@DeleteMapping("/atividade/{id}")
-	public void getAtividadeById(@PathVariable Long id) {
-		atividadeService.deleteById(id);
+	@GetMapping("/evento/{id}")
+	public Evento getAtividadeById(@PathVariable Long id) {
+		return eventoService.findById(id);
 	}
 	
 }
