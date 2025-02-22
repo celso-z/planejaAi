@@ -33,8 +33,7 @@ public class AtividadeService {
 		atividade.setMaxCapacidade(atividadeDto.getCapacidadeMaxima());
 		atividade.setData(atividadeDto.getData());
 		atividade.setMinutosDuracao(atividadeDto.getDuracao());
-		atividade.setTipoAtividade(TipoAtividade.valueOf("MINICURSO")); //Temporário
-		
+		atividade.setTipoAtividade(TipoAtividade.MINICURSO); //Temporário
 		atividadeRepository.save(atividade);
 	}
 	

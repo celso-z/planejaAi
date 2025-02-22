@@ -30,10 +30,7 @@ public class Inscricao {
 	
 	//@MapsId("atividadeId")
 	@ManyToOne()
-	@JoinColumns({
-		@JoinColumn(referencedColumnName = "ID"),
-		@JoinColumn(referencedColumnName = "ID_EVENTO")
-	})
+	@JoinColumn(referencedColumnName = "ID")
 	private Atividade atividade;
 	
 	@Column(nullable = false, unique = true)

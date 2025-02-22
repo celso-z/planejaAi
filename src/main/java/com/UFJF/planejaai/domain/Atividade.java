@@ -10,12 +10,11 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-@IdClass(AtividadeId.class)
+//@IdClass(AtividadeId.class)
 public class Atividade {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,13 +27,12 @@ public class Atividade {
 	@Column(nullable = false)
 	private String nome, descricao;
 	
-	@Column(name = "TIPO_ATIVIDADE", nullable = false, insertable = false, updatable = false)
+	@Column(name = "TIPO_ATIVIDADE", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private TipoAtividade tipoAtividade;
 	
 	private Integer minutosDuracao;
 	
-	@Id
 	@ManyToOne()
 	@JoinColumn(name = "ID_EVENTO")
 	private Evento evento;

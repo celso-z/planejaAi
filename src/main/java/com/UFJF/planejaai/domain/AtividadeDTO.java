@@ -22,6 +22,7 @@ public class AtividadeDTO {
 		this.capacidadeMaxima = capacidadeMaxima;
 		this.tipoAtividade = tipoAtividade;
 		this.duracao = duracao;
+		this.eventoId = eventoId;
 	}
 	public String getNome() {
 		return nome;
