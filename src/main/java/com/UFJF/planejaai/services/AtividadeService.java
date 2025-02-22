@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import com.UFJF.planejaai.domain.Atividade;
 import com.UFJF.planejaai.domain.AtividadeDTO;
@@ -12,7 +13,7 @@ import com.UFJF.planejaai.domain.Evento;
 import com.UFJF.planejaai.domain.TipoAtividade;
 import com.UFJF.planejaai.repositories.AtividadeRepository;
 import com.UFJF.planejaai.services.EventoService;
-
+@Service
 public class AtividadeService {
 
 	@Autowired

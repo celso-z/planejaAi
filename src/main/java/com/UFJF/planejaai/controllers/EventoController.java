@@ -9,10 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
 
 import com.UFJF.planejaai.domain.Evento;
 import com.UFJF.planejaai.domain.EventoDTO;
 import com.UFJF.planejaai.services.EventoService;
+
+@RestController  // Adicione essa anotação
 
 public class EventoController {
 	@Autowired

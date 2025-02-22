@@ -3,13 +3,17 @@ package com.UFJF.planejaai.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import com.UFJF.planejaai.domain.Evento;
 import com.UFJF.planejaai.domain.EventoDTO;
 import com.UFJF.planejaai.repositories.EventoRepository;
 
+@Service
 public class EventoService {
+	 @Autowired
 	private EventoRepository eventoRepository;
 	
 	public void criarEvento(EventoDTO evento) {
