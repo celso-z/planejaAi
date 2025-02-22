@@ -2,6 +2,7 @@ package com.UFJF.planejaai.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import com.UFJF.planejaai.repositories.AtividadeRepository;
 import com.UFJF.planejaai.repositories.InscricaoRepository;
@@ -13,6 +14,7 @@ import com.UFJF.planejaai.domain.Atividade;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class InscricaoService {
 
 	@Autowired
