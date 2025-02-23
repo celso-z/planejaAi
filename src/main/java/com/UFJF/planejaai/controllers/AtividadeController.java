@@ -36,9 +36,20 @@ public class AtividadeController {
 		return atividadeService.getAllAtividades();
 	}
 	
-	@DeleteMapping("/atividade/{id}")
+	@GetMapping("/atividade/{id}")
 	public void getAtividadeById(@PathVariable Long id) {
+		atividadeService.getById(id);
+	}
+	
+	@DeleteMapping("/atividade/{id}")
+	public void deleteAtividadeById(@PathVariable Long id) {
 		atividadeService.deleteById(id);
 	}
+	
+	@GetMapping("/atividades/{eventoId}")
+	public void getAtividadeByEvento(@PathVariable Long eventoId) {
+		atividadeService.getById(eventoId);
+	}
+	
 	
 }

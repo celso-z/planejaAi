@@ -41,7 +41,8 @@ public class AtividadeService {
 		return (List<Atividade>) atividadeRepository.findAll();
 	}
 	
-	public List<Atividade> getAllAtividadesEvento(Evento evento){
+	public List<Atividade> getAllAtividadesEvento(Long eventoId){
+		Evento evento = eventoService.findById(eventoId);
 		return (List<Atividade>) atividadeRepository.findAllByEvento(evento);
 	}
 	

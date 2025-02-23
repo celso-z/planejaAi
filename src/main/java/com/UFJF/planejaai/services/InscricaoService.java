@@ -30,7 +30,7 @@ public class InscricaoService {
 		Participante participante = (Participante) participanteRepository.findById(inscricaoDto.idParticipante())
 			.map(part -> part)
 			.orElseThrow(() -> new UsernameNotFoundException("Participante não encontrado!"));
-		Atividade atividade = atividadeRepository.findById(inscricaoDto.idParticipante())
+		Atividade atividade = atividadeRepository.findById(inscricaoDto.idAtividade())
 			.map(atv -> atv)
 			.orElseThrow(() -> new UsernameNotFoundException("Atividade não encontrada!"));
 		if(participante == null || atividade == null) return;
