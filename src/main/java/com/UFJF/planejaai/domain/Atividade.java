@@ -1,6 +1,6 @@
 package com.UFJF.planejaai.domain;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -20,7 +20,8 @@ public class Atividade {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private Date data;
+	@Column(nullable = false, columnDefinition = "TIMESTAMP")
+    private LocalDateTime data;
 	
 	private Integer maxCapacidade;
 	
@@ -45,11 +46,11 @@ public class Atividade {
 		this.id = id;
 	}
 
-	public Date getData() {
+	public LocalDateTime getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(LocalDateTime data) {
 		this.data = data;
 	}
 

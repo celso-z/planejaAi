@@ -1,18 +1,18 @@
 package com.UFJF.planejaai.domain;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 public class AtividadeDTO {
 	private String nome;
 	private String descricao;
-	private Date data;
+	private LocalDateTime data;
 	private String local;
 	private Integer capacidadeMaxima;
 	private Integer tipoAtividade;
 	private Integer duracao;
 	private Long eventoId;
 	
-	public AtividadeDTO(String nome, String descricao, Date data, String local, Integer capacidadeMaxima,
+	public AtividadeDTO(String nome, String descricao, LocalDateTime data, String local, Integer capacidadeMaxima,
 			Integer tipoAtividade, Integer duracao, Long eventoId) {
 		super();
 		this.nome = nome;
@@ -36,10 +36,10 @@ public class AtividadeDTO {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public Date getData() {
+	public LocalDateTime getData() {
 		return data;
 	}
-	public void setData(Date data) {
+	public void setData(LocalDateTime data) {
 		this.data = data;
 	}
 	public String getLocal() {
