@@ -5,16 +5,9 @@ import java.util.Objects;
 
 
 public class InscricaoId implements Serializable {
-	private Long id;
 	private Participante participante;
 	private Atividade atividade;
 	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long inscricaoId) {
-		this.id = inscricaoId;
-	}
 	public Participante getParticipante() {
 		return participante;
 	}
@@ -24,7 +17,7 @@ public class InscricaoId implements Serializable {
 	
 	@Override
 	public String toString() {
-		return id.toString() + participante.toString();
+		return participante.toString();
 	}
 
 	public Atividade getAtividade() {
@@ -36,7 +29,7 @@ public class InscricaoId implements Serializable {
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(atividade, id, participante);
+		return Objects.hash(atividade, participante);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -47,7 +40,7 @@ public class InscricaoId implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		InscricaoId other = (InscricaoId) obj;
-		return Objects.equals(atividade, other.atividade) && Objects.equals(id, other.id)
+		return Objects.equals(atividade, other.atividade)
 				&& Objects.equals(participante, other.participante);
 	}
 	

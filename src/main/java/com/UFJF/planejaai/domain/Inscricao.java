@@ -17,20 +17,19 @@ import jakarta.persistence.ManyToOne;
 @Entity
 @IdClass(InscricaoId.class)
 public class Inscricao {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 	
 	@Column(nullable = false, columnDefinition = "boolean default false")
 	private boolean presencaConfirmada;
 	
+	@Id
 	@ManyToOne
 	@JoinColumn(name="ID_PARTICIPANTE")
 	private Participante participante;
 	
 	//@MapsId("atividadeId")
+	@Id
 	@ManyToOne()
-	@JoinColumn(referencedColumnName = "ID")
+	@JoinColumn(referencedColumnName = "ID", name="ID_ATIVIDADE")
 	private Atividade atividade;
 	
 	@Column(nullable = false, unique = true)
@@ -39,14 +38,6 @@ public class Inscricao {
 	
 	public Participante getParticipante() {
 		return participante;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public boolean isPresencaConfirmada() {
@@ -66,10 +57,10 @@ public class Inscricao {
 	
 	@Override
 	public String toString() {
-		if(id == null || participante == null || atividade == null) {
+		if( participante == null || atividade == null) {
 			throw new IllegalStateException("Inscrição não corretamente inicializada!");
 		}
-		return id.toString() + participante.toString() + atividade.toString();
+		return participante.toString() + atividade.toString();
 	}
 	
 	public void generateEndpointCode() throws NoSuchAlgorithmException {

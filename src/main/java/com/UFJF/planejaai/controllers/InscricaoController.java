@@ -1,5 +1,6 @@
 package com.UFJF.planejaai.controllers;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class InscricaoController {
 	private InscricaoService inscricaoService;
 	
 	@PostMapping("/inscricao")
-	public ResponseEntity<?> criarAtividade(@RequestBody InscricaoDTO inscricao){
+	public ResponseEntity<?> criarAtividade(@RequestBody InscricaoDTO inscricao) throws NoSuchAlgorithmException{
 		try {
 			inscricaoService.criarInscricao(inscricao);
 		} catch (IllegalArgumentException ex) {
@@ -35,8 +36,18 @@ public class InscricaoController {
 		return inscricaoService.getAllInscricoes();
 	}
 	
-	@DeleteMapping("/inscricao/{id}")
-	public Inscricao getInscricaoById(@PathVariable Long id) {
-		return inscricaoService.getInscricaoPorId(id);
+	@GetMapping("/inscricao/{participanteId}/{atividadeId}")
+	public Inscricao getInscricaoById(@PathVariable Long participanteId, @PathVariable Long atividadeId) {
+		return inscricaoService.getInscricao(participanteId, atividadeId);
+	}
+	
+	@DeleteMapping("/inscricao/{participanteId}/{atividadeId}")
+	public void deletaInscricaoById(@PathVariable Long participanteId, @PathVariable Long atividadeId) {
+		inscricaoService.deletaInscricao(participanteId, atividadeId);
+	}
+	
+	@GetMapping("/inscricao/{participanteId}")
+	public List<Inscricao> getInscricaoById(@PathVariable Long participanteId) {
+		return inscricaoService.getAllInscricoesPorParticipante(participanteId);
 	}
 }

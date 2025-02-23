@@ -45,7 +45,6 @@ public class InscricaoTests {
 		}
 		
 		example.setPresencaConfirmada(true);
-		example.setId(Long.valueOf(0));
 		example.setParticipante(new Participante());
 		example.setAtividade(new Atividade());
 		
@@ -66,7 +65,6 @@ public class InscricaoTests {
 		
 		Inscricao example2 = new Inscricao();
 		example2.setPresencaConfirmada(false);
-		example2.setId(Long.valueOf(1));
 		example2.setParticipante(new Participante());
 		example2.setAtividade(new Atividade());
 		try {
