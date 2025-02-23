@@ -57,7 +57,7 @@ public class SecurityConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**") // Permite CORS para todas as rotas
                 .allowedOrigins("http://localhost:5173") // Permite apenas seu front-end
-                .allowedMethods("GET", "POST", "PUT", "DELETE") // Permite os métodos especificados
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH") // Permite os métodos especificados
                 .allowedHeaders("*") // Permite todos os cabeçalhos
                 .allowCredentials(true); // Se for necessário enviar cookies/credenciais
     }
