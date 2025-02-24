@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -51,5 +52,12 @@ public class AtividadeController {
 		atividadeService.getById(eventoId);
 	}
 	
+	@PatchMapping("/atividade")
+	public ResponseEntity<?> atualizaEvento(@RequestBody Atividade atividade) {
+		Atividade atv = atividadeService.updateAtividade(atividade);
+		if(atv == null) return ResponseEntity.badRequest().build();
+		else return ResponseEntity.ok(atv);
+		
+	}
 	
 }

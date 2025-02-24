@@ -37,6 +37,9 @@ public abstract class Usuario {
 	@NotBlank
 	private String senha;
 	
+	@Column()
+	private String telefone;
+	
 	@Column(name = "TIPO_USUARIO", nullable = false, insertable = false, updatable = false)
 	@Enumerated(EnumType.STRING)
 	private TipoUsuario tipoUsuario;
@@ -96,6 +99,14 @@ public abstract class Usuario {
 			return false;
 		Usuario other = (Usuario) obj;
 		return Objects.equals(email, other.email) && Objects.equals(id, other.id);
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 	
 }

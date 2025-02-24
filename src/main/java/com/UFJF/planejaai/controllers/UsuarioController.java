@@ -17,7 +17,6 @@ import com.UFJF.planejaai.domain.Organizador;
 import com.UFJF.planejaai.domain.Palestrante;
 import com.UFJF.planejaai.domain.Participante;
 import com.UFJF.planejaai.domain.TipoUsuario;
-import com.UFJF.planejaai.domain.Usuario;
 import com.UFJF.planejaai.domain.UsuarioDTO;
 import com.UFJF.planejaai.services.UsuarioService;
 
@@ -108,6 +107,17 @@ public class UsuarioController {
 	public ResponseEntity<?> atualizarUsuario(@RequestBody Organizador organizador) {
 		try {
 			usuarioService.atualizarUsuario(organizador);
+		} catch (IllegalArgumentException ex) {
+			return ResponseEntity.badRequest().build();
+		} catch (UsernameNotFoundException ex) {
+			return ResponseEntity.badRequest().build();
+		}
+		return ResponseEntity.ok().build();
+	}
+	@PutMapping("/palestrante")
+	public ResponseEntity<?> atualizarUsuario(@RequestBody Palestrante palestrante) {
+		try {
+			usuarioService.atualizarUsuario(palestrante);
 		} catch (IllegalArgumentException ex) {
 			return ResponseEntity.badRequest().build();
 		} catch (UsernameNotFoundException ex) {

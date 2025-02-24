@@ -78,8 +78,8 @@ public class UsuarioService {
 		Optional<Usuario> encontrado = repositorioUsuario.findByEmail(usuario.getEmail());
 		encontrado.ifPresentOrElse(
 				(entidade) -> {
-					usuario.setId(entidade.getId());
-					usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
+					if(entidade.getId() != null) usuario.setId(entidade.getId());
+					if(entidade.getSenha() != null)usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
 					try{
 						repositorioUsuario.save(usuario);
 					}catch (DataIntegrityViolationException e) {

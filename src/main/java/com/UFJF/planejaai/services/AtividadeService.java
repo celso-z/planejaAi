@@ -1,5 +1,6 @@
 package com.UFJF.planejaai.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +14,13 @@ import com.UFJF.planejaai.domain.Evento;
 import com.UFJF.planejaai.domain.TipoAtividade;
 import com.UFJF.planejaai.repositories.AtividadeRepository;
 import com.UFJF.planejaai.services.EventoService;
+
+import ch.qos.logback.core.joran.conditional.IfAction;
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 @Service
 public class AtividadeService {
 
@@ -20,6 +28,8 @@ public class AtividadeService {
 	private AtividadeRepository atividadeRepository;
 	@Autowired
 	private EventoService eventoService;
+	@Autowired
+	private SchedulerService schedulerService;
 	
 	public void criarAtividade(AtividadeDTO atividadeDto) {
 		if(atividadeDto == null) {
@@ -35,6 +45,7 @@ public class AtividadeService {
 		atividade.setMinutosDuracao(atividadeDto.getDuracao());
 		atividade.setTipoAtividade(TipoAtividade.MINICURSO); //Temporário
 		atividadeRepository.save(atividade);
+		schedulerService.scheduleNotificacao(atividade);
 	}
 	
 	public List<Atividade> getAllAtividades(){
@@ -55,5 +66,23 @@ public class AtividadeService {
 		Optional<Atividade> atividade = atividadeRepository.findById(id);
 		atividade.ifPresentOrElse(atv -> {atividadeRepository.delete(atv);},
 				() -> {throw new UsernameNotFoundException("Atividade não encontrada!");});
+	}
+	public Atividade updateAtividade(Atividade atividade) {
+		if(atividade.getId() == null) return null;
+		Optional<Atividade> atividadeAtual = atividadeRepository.findById(atividade.getId());
+		if(atividadeAtual.isPresent()) {
+			Atividade atv = atividadeAtual.get();
+			if(atividade.getData() != null) atv.setData(atividade.getData());
+			if(atividade.getMaxCapacidade() != null) atv.setMaxCapacidade(atividade.getMaxCapacidade());
+			if(atividade.getNome() != null) atv.setNome(atividade.getNome());
+			if(atividade.getDescricao() != null) atv.setDescricao(atividade.getDescricao());
+			if(atividade.getTipoAtividade() != null) atv.setTipoAtividade(atividade.getTipoAtividade());
+			if(atividade.getMinutosDuracao() != null) atv.setMinutosDuracao(atividade.getMinutosDuracao());
+			atividadeRepository.save(atv);
+			return atv;
+		}
+		else {
+			return null;
+		}
 	}
 }
