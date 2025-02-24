@@ -1,0 +1,36 @@
+@startuml
+
+package "Backend" {
+	package "Controllers"{
+		component UsuarioController
+		component LoginController
+		component InscricaoController
+		component EventoController
+		component UsuarioController
+		component AtividadeController
+		UsuarioController -[hidden]-> LoginController
+		LoginController -[hidden]-> InscricaoController
+		InscricaoController -[hidden]-> EventoController
+		EventoController -[hidden]-> AtividadeController
+	}
+	package "Services"{
+		component AtividadeService
+		component EventoService
+		component InfoUsuarioService
+		component InscricaoService
+		component JwtService
+		component SchedulerService
+		component UsuarioService
+		UsuarioService -[hidden]-> JwtService
+		JwtService -[hidden]-> InscricaoService
+		InscricaoService -[hidden]-> EventoService
+		EventoService -[hidden]-> AtividadeService
+		AtividadeService -[hidden]-> InfoUsuarioService
+		InfoUsuarioService -[hidden]-> SchedulerService
+	}
+	UsuarioController -> UsuarioService
+	LoginController -> JwtService
+	InscricaoController -> InscricaoService
+	EventoController -> EventoService
+	AtividadeController -> AtividadeService
+}
