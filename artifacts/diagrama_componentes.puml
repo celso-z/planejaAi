@@ -1,6 +1,20 @@
 @startuml
 
+cloud Requisicoes {
+}
+
 package "Backend" {
+	package "Config"{
+		component FilterChain
+		component AuthManager
+		component CorsMapper
+		component PasswordEncoder	
+		FilterChain -[hidden]-> CorsMapper
+		CorsMapper -[hidden]-> AuthManager
+		AuthManager -[hidden]-> PasswordEncoder
+		FilterChain -d-> CorsMapper
+		CorsMapper -d-> AuthManager
+	}
 	package "Controllers"{
 		component UsuarioController
 		component LoginController
@@ -28,9 +42,57 @@ package "Backend" {
 		AtividadeService -[hidden]-> InfoUsuarioService
 		InfoUsuarioService -[hidden]-> SchedulerService
 	}
+	package "Strategies"{
+		component EmailNotifier
+		component NotifierStrategy
+		component SmsNotifier
+		NotifierStrategy -- EmailNotifier
+		NotifierStrategy -- SmsNotifier
+	}
+	SchedulerService -down-> NotifierStrategy
+	package "Repositories"{
+		component AtividadeRepository
+		component EventoRepository
+		component InscricaoRepository
+		component UsuarioRepository
+		UsuarioRepository -[hidden]-> InscricaoRepository
+		InscricaoRepository -[hidden]-> AtividadeRepository
+		AtividadeRepository -[hidden]-> EventoRepository
+
+	}
+	database "PostgreSQL"{
+		folder "planejaaiDB"{
+		}
+	}
+	CorsMapper -> Controllers
 	UsuarioController -> UsuarioService
 	LoginController -> JwtService
+	LoginController -> AuthManager
 	InscricaoController -> InscricaoService
 	EventoController -> EventoService
 	AtividadeController -> AtividadeService
+	UsuarioService -> UsuarioRepository
+	InscricaoService -> UsuarioRepository
+	InscricaoService -> InscricaoRepository
+	InscricaoService -> AtividadeRepository
+	InfoUsuarioService -> UsuarioRepository
+	EventoService -> EventoRepository
+	AtividadeService -> AtividadeRepository
+	AtividadeService -> EventoRepository
+	
+	Controllers -[hidden]-> Services
+	Services -[hidden]-> Repositories
+	UsuarioRepository -> planejaaiDB
+	InscricaoRepository -> planejaaiDB
+	AtividadeRepository -> planejaaiDB
+	EventoRepository -> planejaaiDB
 }
+cloud AWS{
+	component SNS
+	component SES
+}
+Requisicoes -[hidden]-> Backend
+Requisicoes -> FilterChain
+EmailNotifier -down-> SES
+SmsNotifier -down-> SNS
+@enduml
